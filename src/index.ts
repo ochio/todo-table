@@ -1,18 +1,15 @@
-import "./index.scss";
+import './index.scss';
 
-console.log(123);
-
-function draggable(target:HTMLElement ) {
-	target.onmousedown = function() {
+function draggable(target: HTMLElement) {
+	target.onmousedown = function () {
 		document.onmousemove = mouseMove;
 	};
-	document.onmouseup = function() {
+	document.onmouseup = function () {
 		document.onmousemove = null;
 	};
-	function mouseMove(e: any) {
-		var event = e ? e : window.event;
-		target.style.top = event.clientY + 'px';
-		target.style.left = event.clientX + 'px';
+	function mouseMove(e: MouseEvent) {
+		target.style.top = e.clientY + 'px';
+		target.style.left = e.clientX + 'px';
 	}
 }
 
