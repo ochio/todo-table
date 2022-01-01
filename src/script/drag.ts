@@ -1,5 +1,3 @@
-import './index.scss';
-
 function draggable(target: HTMLElement) {
 	target.onmousedown = function () {
 		document.onmousemove = mouseMove;
@@ -13,6 +11,10 @@ function draggable(target: HTMLElement) {
 	}
 }
 
-draggable(document.getElementById('a1')!);
-draggable(document.getElementById('b1')!);
-draggable(document.getElementById('c1')!);
+function drag() {
+	draggable(document.getElementById('a1')!);
+	draggable(document.getElementById('b1')!);
+	draggable(document.getElementById('c1')!);
+}
+
+export default drag;
