@@ -1,6 +1,6 @@
 import '../index.scss';
-import myChart from './chart';
+import Chart from './chart';
 import drag from './drag';
 
-myChart;
+Chart;
 drag();
