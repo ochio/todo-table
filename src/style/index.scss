@@ -1,15 +1,15 @@
-@use './reset.scss';
+@use './reset';
 
 .container {
 	padding: 10px;
 }
 
 .card {
+	position: absolute;
 	width: 200px;
 	padding: 8px 0px 8px 5px;
-	border: 1px solid #ddd;
-	position: absolute;
 	background: #fff;
+	border: 1px solid #ddd;
 	border-radius: 8px;
 	box-shadow: 1px 1px 5px #ddd;
 	&__title {
