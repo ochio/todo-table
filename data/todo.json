@@ -1,28 +1,24 @@
 {
 	"todo": [
 		{
-			"titile": "卵を買ってくる。",
+			"title": "卵を買ってくる。",
 			"limit": "2022/01/10",
-			"importance": 10,
-			"urgency": 1
+			"importance": 10
 		},
 		{
-			"titile": "友達と遊ぶ。",
+			"title": "友達と遊ぶ。",
 			"limit": "2022/01/11",
-			"importance": 10,
-			"urgency": 11
+			"importance": 10
 		},
 		{
-			"titile": "メールに返信する",
+			"title": "メールに返信する",
 			"limit": "2022/01/12",
-			"importance": 5,
-			"urgency": 5
+			"importance": 5
 		},
 		{
-			"titile": "ジムに行く",
+			"title": "ジムに行く",
 			"limit": "2022/01/09",
-			"importance": 11,
-			"urgency": 10
+			"importance": 11
 		}
 	]
 }
