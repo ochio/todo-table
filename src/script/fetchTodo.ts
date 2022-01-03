@@ -1,7 +1,8 @@
 async function fetchTodo() {
 	const resorceLocation = 'http://localhost:3000/todo';
 
-	console.log(await (await fetch(resorceLocation)).json());
+	const todo = await (await fetch(resorceLocation)).json();
+	return todo;
 }
 
 export default fetchTodo;
