@@ -13,8 +13,10 @@ function draggable(target: HTMLElement) {
 	}
 }
 
-function drag() {
-	draggable(document.getElementById('card')!);
+function drag(todoLength: number) {
+	for (let i = 0; i < todoLength; i++) {
+		draggable(document.getElementById(`card${i}`)!);
+	}
 }
 
 export default drag;

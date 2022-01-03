@@ -4,7 +4,12 @@ import drag from './drag';
 import fetchTodo from './fetchTodo';
 import generateCard from './generateCard';
 
-fetchTodo()
-	.then((todo) => generateCard(todo))
-	.then(() => drag());
-chart;
+async function init() {
+	const todo = await fetchTodo();
+	await generateCard(todo);
+	await drag(todo.length);
+
+	chart;
+}
+
+init();
