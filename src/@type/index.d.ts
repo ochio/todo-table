@@ -1,5 +1,5 @@
 export type Todo = {
 	title: string;
 	limit: string;
-	importance: number;
+	importance: string;
 };

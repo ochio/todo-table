@@ -3,22 +3,22 @@
 		{
 			"title": "卵を買ってくる。",
 			"limit": "2022/01/10",
-			"importance": 10
+			"importance": "10"
 		},
 		{
 			"title": "友達と遊ぶ。",
 			"limit": "2022/01/11",
-			"importance": 10
+			"importance": "10"
 		},
 		{
 			"title": "メールに返信する",
 			"limit": "2022/01/12",
-			"importance": 5
+			"importance": "5"
 		},
 		{
 			"title": "ジムに行く",
 			"limit": "2022/01/09",
-			"importance": 11
+			"importance": "11"
 		}
 	]
 }
