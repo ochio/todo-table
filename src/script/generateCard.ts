@@ -13,15 +13,16 @@ async function generateCard(todos: AddPropertyTodo[]) {
 			const clone = document.importNode(content, true);
 
 			if (clone == null) throw new Error('no clone');
-			const additionalData: CardInfo = {
-				id: `card${i}`,
+			const todo: CardInfo = {
+				key: i,
+				id: todos[i].id,
 				title: todos[i].title,
 				limit: todos[i].limit,
 				level: todos[i].level,
 				importance: todos[i].importance,
 			};
 
-			const addedClone = addDataToDOM(clone, additionalData);
+			const addedClone = addDataToDOM(clone, todo);
 
 			fragment.appendChild(addedClone);
 		}
@@ -32,11 +33,12 @@ async function generateCard(todos: AddPropertyTodo[]) {
 }
 
 function addDataToDOM(clone: DocumentFragment, data: CardInfo) {
-	clone.querySelector('.card')!.id = data.id;
-	(clone.querySelector('.card')! as HTMLElement).dataset.level = data.level;
-	(clone.querySelector('.card')! as HTMLElement).dataset.importance = data.importance;
-	clone.querySelector('.title')!.textContent = data.title;
-	clone.querySelector('.limit')!.textContent = data.limit;
+	clone.querySelector('[data-id="-1"]')!.id = `card${data.key}`;
+	(clone.querySelector('[data-id="-1"]')! as HTMLElement).dataset.id = data.id;
+	(clone.querySelector('[data-level="high"]')! as HTMLElement).dataset.level = data.level;
+	(clone.querySelector('[data-importance="-1"]')! as HTMLElement).dataset.importance = data.importance;
+	clone.querySelector('[data-js="title"]')!.textContent = data.title;
+	clone.querySelector('[data-js="limit"]')!.textContent = data.limit;
 
 	return clone;
 }

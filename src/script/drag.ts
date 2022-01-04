@@ -14,8 +14,9 @@ function draggable(target: HTMLElement) {
 }
 
 function drag(todoLength: number) {
+	const todoCards = document.querySelectorAll<HTMLElement>('[data-id]');
 	for (let i = 0; i < todoLength; i++) {
-		draggable(document.getElementById(`card${i}`)!);
+		draggable(todoCards[i]);
 	}
 }
 

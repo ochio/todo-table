@@ -6,6 +6,7 @@ export type Todo = {
 };
 
 export type CardInfo = {
+	key: number;
 	id: string;
 	title: string;
 	limit: string;
