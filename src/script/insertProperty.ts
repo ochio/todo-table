@@ -1,11 +1,4 @@
-import type { Todo } from '../@type';
-type CardInfo = {
-	id: string;
-	title: string;
-	limit: string;
-	level: string;
-	importance: string;
-};
+import type { CardInfo, PropertyAddedTodo, Todo } from '../@type';
 
 function insertLevel(todos: Todo[]) {
 	todos.sort((a, b) => {
@@ -30,6 +23,8 @@ function insertLevel(todos: Todo[]) {
 
 function insertProperty(todos: Todo[]) {
 	insertLevel(todos);
+
+	return todos as PropertyAddedTodo[];
 }
 
 export default insertProperty;

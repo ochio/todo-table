@@ -1,7 +1,6 @@
-import type { CardInfo, Todo } from '../@type';
+import type { CardInfo, PropertyAddedTodo } from '../@type';
 
-type AddPropertyTodo = Todo & CardInfo;
-async function generateCard(todos: AddPropertyTodo[]) {
+async function generateCard(todos: PropertyAddedTodo[]) {
 	if ('content' in document.createElement('template')) {
 		const template = <HTMLTemplateElement>document.getElementById('template');
 		if (template == null) throw new Error('no template');

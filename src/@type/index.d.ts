@@ -13,3 +13,5 @@ export type CardInfo = {
 	level: string;
 	importance: string;
 };
+
+export type PropertyAddedTodo = Todo & CardInfo;
