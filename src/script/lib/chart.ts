@@ -1,6 +1,4 @@
-const SPACE = 50;
-const CANVAS_WIDTH = document.documentElement.clientWidth - SPACE; // canvas要素の横幅(px)
-const CANVAS_HEIGHT = document.documentElement.clientHeight - SPACE; // canvas要素の縦幅(px)
+import { CANVAS_HEIGHT, CANVAS_WIDTH } from '../setting';
 
 export default window.onload = function () {
 	// canvas要素を取得し、サイズ設定

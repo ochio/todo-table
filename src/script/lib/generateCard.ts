@@ -1,4 +1,4 @@
-import type { CardInfo, PropertyAddedTodo } from '../@type';
+import type { CardInfo, PropertyAddedTodo } from '../../@type';
 
 async function generateCard(todos: PropertyAddedTodo[]) {
 	if ('content' in document.createElement('template')) {
