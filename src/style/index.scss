@@ -10,13 +10,13 @@
 	padding: 8px 0px 8px 5px;
 	border-radius: 8px;
 	box-shadow: 1px 1px 5px #ddd;
-	&--high {
+	&[data-level='high'] {
 		background-color: #e7624f;
 	}
-	&--middle {
+	&[data-level='middle'] {
 		background-color: #fbc968;
 	}
-	&--low {
+	&[data-level='low'] {
 		background-color: #76b8e8;
 	}
 	&__title {
