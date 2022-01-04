@@ -3,11 +3,13 @@ import chart from './chart';
 import drag from './drag';
 import fetchTodo from './fetchTodo';
 import generateCard from './generateCard';
+import insertProperty from './insertProperty';
 
 async function init() {
-	const todo = await fetchTodo();
-	await generateCard(todo);
-	await drag(todo.length);
+	const todos = await fetchTodo();
+	await insertProperty(todos);
+	await generateCard(todos);
+	await drag(todos.length);
 
 	chart;
 }
