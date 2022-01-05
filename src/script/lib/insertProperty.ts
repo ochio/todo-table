@@ -1,5 +1,5 @@
 import type { CardInfo, PropertyAddedTodo, Todo } from '../../@type';
-import { CANVAS_HEIGHT, CANVAS_WIDTH, CARD_SIZE } from '../setting';
+import { CANVAS_HEIGHT, CANVAS_WIDTH } from '../setting';
 
 function insertLevel(todos: Todo[]) {
 	todos.sort((a, b) => {
@@ -45,11 +45,7 @@ function insertLocation(todos: Todo[]) {
 		const separation = Math.floor(CANVAS_WIDTH / diff);
 
 		const result = (todo.importance - MIN_IMPORTANCE) * separation;
-		if (result + CARD_SIZE >= CANVAS_WIDTH) {
-			return CANVAS_WIDTH - 70;
-		} else {
-			return result;
-		}
+		return result;
 	}
 
 	function calculateTop(todo: Todo) {
@@ -57,12 +53,7 @@ function insertLocation(todos: Todo[]) {
 		const separation = Math.floor(CANVAS_HEIGHT / diff) === 0 ? 25 : Math.floor(CANVAS_HEIGHT / diff);
 
 		const result = ((new Date(todo.limit).getTime() - NEAREST_DATE) / 10000000) * separation;
-
-		if (result >= CANVAS_HEIGHT) {
-			return CANVAS_HEIGHT;
-		} else {
-			return result;
-		}
+		return result;
 	}
 }
 
