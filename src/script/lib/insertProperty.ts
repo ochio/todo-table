@@ -44,6 +44,8 @@ function insertLocation(todos: Todo[]) {
 		const diff = MAX_IMPORTANCE - MIN_IMPORTANCE;
 		const separation = Math.floor(CANVAS_WIDTH / diff);
 
+		console.log(diff, separation, todo.importance);
+
 		return todo.importance * separation;
 	}
 
@@ -51,7 +53,7 @@ function insertLocation(todos: Todo[]) {
 		const diff = FURTHER_DATE - NEAREST_DATE;
 		const separation = Math.floor(CANVAS_HEIGHT / diff);
 
-		return (new Date(todos[i].limit).getTime() / FURTHER_DATE) * 10 * separation;
+		return (new Date(todo.limit).getTime() / FURTHER_DATE) * 10 * separation;
 	}
 }
 
