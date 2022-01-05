@@ -7,13 +7,21 @@
 		<title>Todo Table</title>
 	</head>
 	<body>
+		<form class="form">
+			<input type="text" name="title" id="title" class="form__title" placeholder="追加する内容を記載してください。" />
+			<label for="deadline" class="form__label">期日:</label>
+			<input type="datetime-local" name="deadline" id="deadline" class="form__deadline" />
+			<label for="deadline" class="form__label">重要度:</label>
+			<input type="number" name="importance" id="importance" class="form__importance" placeholder="0" />
+			<input type="button" value="追加" class="form__submit" />
+		</form>
 		<template id="template">
 			<div class="card js-card" data-id="-1" data-level="high" data-importance="-1" data-top="0" data-left="0">
 				<p class="card__deadline" data-js="deadline"></p>
 				<p class="card__title" data-js="title"></p>
 			</div>
 		</template>
-		<div class="container">
+		<div class="container" id="container">
 			<canvas id="chart"></canvas>
 		</div>
 	</body>
