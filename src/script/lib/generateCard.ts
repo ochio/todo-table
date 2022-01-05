@@ -35,7 +35,7 @@ function addDataToDOM(clone: DocumentFragment, data: CardInfo) {
 	(clone.querySelector('[data-level="high"]')! as HTMLElement).dataset.level = data.level;
 	(clone.querySelector('[data-importance="-1"]')! as HTMLElement).dataset.importance = data.importance.toString();
 	clone.querySelector('[data-js="title"]')!.textContent = data.title;
-	clone.querySelector('[data-js="limit"]')!.textContent = data.limit;
+	clone.querySelector('[data-js="deadline"]')!.textContent = data.deadline;
 
 	return clone;
 }

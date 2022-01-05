@@ -3,8 +3,8 @@ import { CANVAS_HEIGHT, CANVAS_WIDTH } from '../setting';
 
 function insertLevel(todos: Todo[]) {
 	todos.sort((a, b) => {
-		const aDate = new Date(a.limit).getTime();
-		const bDate = new Date(b.limit).getTime();
+		const aDate = new Date(a.deadline).getTime();
+		const bDate = new Date(b.deadline).getTime();
 		return aDate < bDate ? -1 : 1;
 	});
 
@@ -31,8 +31,8 @@ function insertLocation(todos: Todo[]) {
 		MAX_IMPORTANCE = Math.max(MAX_IMPORTANCE, todos[i].importance);
 		MIN_IMPORTANCE = Math.min(MIN_IMPORTANCE, todos[i].importance);
 
-		FURTHER_DATE = Math.max(FURTHER_DATE, new Date(todos[i].limit).getTime());
-		NEAREST_DATE = Math.min(NEAREST_DATE, new Date(todos[i].limit).getTime());
+		FURTHER_DATE = Math.max(FURTHER_DATE, new Date(todos[i].deadline).getTime());
+		NEAREST_DATE = Math.min(NEAREST_DATE, new Date(todos[i].deadline).getTime());
 	}
 
 	for (var i = 0; i < todos.length; i++) {
@@ -52,7 +52,7 @@ function insertLocation(todos: Todo[]) {
 		const diff = (FURTHER_DATE - NEAREST_DATE) / 10000000;
 		const separation = Math.floor(CANVAS_HEIGHT / diff) === 0 ? 25 : Math.floor(CANVAS_HEIGHT / diff);
 
-		const result = ((new Date(todo.limit).getTime() - NEAREST_DATE) / 10000000) * separation;
+		const result = ((new Date(todo.deadline).getTime() - NEAREST_DATE) / 10000000) * separation;
 		return result;
 	}
 }
