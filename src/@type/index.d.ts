@@ -6,13 +6,12 @@ export type Todo = {
 	[prop: string]: number | string;
 };
 
-export type CardInfo = {
-	key: number;
-	id: string;
-	title: string;
-	limit: string;
+export type PropertyAddedTodo = Todo & {
 	level: string;
-	importance: number;
+	top: string;
+	left: string;
 };
 
-export type PropertyAddedTodo = Todo & CardInfo;
+export type CardInfo = PropertyAddedTodo & {
+	key: number;
+};
