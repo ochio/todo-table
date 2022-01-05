@@ -52,6 +52,7 @@
 	&__accordionBtn {
 		position: absolute;
 		left: 15px;
+		cursor: pointer;
 		&.is-hidden {
 			display: none;
 		}

@@ -1,20 +1,31 @@
 function accordion() {
-	const form = document.getElementById('form');
-	if (form == null) {
-		throw new Error('no form');
+	const openBtn = document.getElementById('formOpen');
+	const closeBtn = document.getElementById('formClose');
+	if (openBtn == null) {
+		throw new Error('no open btn');
+	}
+	if (closeBtn == null) {
+		throw new Error('no close btn');
 	}
 
-	form.addEventListener('click', () => {
-		formToggle();
-		iconToggle();
+	openBtn.addEventListener('click', () => {
+		formToggle('close');
+		iconToggle('close');
 	});
 
-	function formToggle() {
+	closeBtn.addEventListener('click', () => {
+		formToggle('open');
+		iconToggle('open');
+	});
+
+	function formToggle(tobe: 'open' | 'close') {
+		const form = document.getElementById('form');
+
 		if (form == null) {
 			throw new Error('no form');
 		}
 		const formInner = document.getElementsByClassName('js-formInner');
-		if (form.classList.contains('is-close')) {
+		if (tobe === 'close') {
 			form.classList.remove('is-close');
 			formInner[0].classList.remove('is-hidden');
 		} else {
@@ -23,21 +34,19 @@ function accordion() {
 		}
 	}
 
-	function iconToggle() {
-		const openBtn = document.getElementById('formOpen');
-		const closeBtn = document.getElementById('formClose');
+	function iconToggle(tobe: 'open' | 'close') {
 		if (openBtn == null) {
 			throw new Error('no open btn');
 		}
 		if (closeBtn == null) {
 			throw new Error('no close btn');
 		}
-		if (openBtn.classList.contains('is-hidden')) {
-			openBtn.classList.remove('is-hidden');
-			closeBtn.classList.add('is-hidden');
-		} else {
+		if (tobe === 'close') {
 			closeBtn.classList.remove('is-hidden');
 			openBtn.classList.add('is-hidden');
+		} else {
+			openBtn.classList.remove('is-hidden');
+			closeBtn.classList.add('is-hidden');
 		}
 	}
 }
