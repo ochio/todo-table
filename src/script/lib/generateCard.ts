@@ -21,7 +21,7 @@ async function generateCard(todos: PropertyAddedTodo[]) {
 
 			fragment.appendChild(addedClone);
 		}
-		document.body.appendChild(fragment);
+		document.querySelector('#container')!.appendChild(fragment);
 	} else {
 		console.log('template要素に対応していません。');
 	}
