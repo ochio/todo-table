@@ -1,5 +1,6 @@
 import type { PropertyAddedTodo, Todo } from '../@type';
 import '../style/index.scss';
+import animation from './lib/animation';
 import chart from './lib/chart';
 import drag from './lib/drag';
 import fetchTodo from './lib/fetchTodo';
@@ -15,6 +16,7 @@ async function init() {
 	drag(todos.length);
 
 	chart;
+	animation();
 }
 
 init();
