@@ -35,7 +35,7 @@ function addDataToDOM(clone: DocumentFragment, data: CardInfo) {
 	clone.querySelector('[data-id="-1"]')!.id = `card${data.key}`;
 	(clone.querySelector('[data-id="-1"]')! as HTMLElement).dataset.id = data.id;
 	(clone.querySelector('[data-level="high"]')! as HTMLElement).dataset.level = data.level;
-	(clone.querySelector('[data-importance="-1"]')! as HTMLElement).dataset.importance = data.importance;
+	(clone.querySelector('[data-importance="-1"]')! as HTMLElement).dataset.importance = String(data.importance);
 	clone.querySelector('[data-js="title"]')!.textContent = data.title;
 	clone.querySelector('[data-js="limit"]')!.textContent = data.limit;
 

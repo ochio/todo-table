@@ -2,7 +2,8 @@ export type Todo = {
 	id: string;
 	title: string;
 	limit: string;
-	importance: string;
+	importance: number;
+	[prop: string]: number | string;
 };
 
 export type CardInfo = {
@@ -11,7 +12,7 @@ export type CardInfo = {
 	title: string;
 	limit: string;
 	level: string;
-	importance: string;
+	importance: number;
 };
 
 export type PropertyAddedTodo = Todo & CardInfo;
