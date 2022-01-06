@@ -19,19 +19,23 @@ function handleInput() {
 
 		function getInput() {
 			const title = formData.get('title') as string;
-			const deadline = (formData.get('deadline') as string) || (getNowYMD() as string);
+			const deadline = getDateYMD(formData.get('deadline') as string) || getDateYMD();
 			const importance = (formData.get('importance') as string) || ('10' as string);
 			if (title == null) {
 				throw new Error('write title');
 			}
 
-			function getNowYMD() {
-				var dt = new Date();
-				var y = dt.getFullYear();
-				var m = ('00' + (dt.getMonth() + 1)).slice(-2);
-				var d = ('00' + dt.getDate()).slice(-2);
-				var result = y + '/' + m + '/' + d;
-				return result;
+			function getDateYMD(date: string = '') {
+				const dt = date == '' ? new Date() : new Date(date);
+
+				return new Intl.DateTimeFormat('ja-jp', {
+					year: 'numeric',
+					month: '2-digit',
+					day: '2-digit',
+					hour: '2-digit',
+					minute: '2-digit',
+					second: '2-digit',
+				}).format(dt);
 			}
 
 			return { title, deadline, importance };
