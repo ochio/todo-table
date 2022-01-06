@@ -1,9 +1,13 @@
-export type Todo = {
+export type OriginalTodo = {
 	id: string;
 	title: string;
 	deadline: string;
-	importance: number;
+	importance: string;
 	[prop: string]: number | string;
+};
+
+export type FilteredTodo = OriginalTodo & {
+	importance: number;
 };
 
 export type PropertyAddedTodo = Todo & {

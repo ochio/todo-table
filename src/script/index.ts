@@ -1,4 +1,4 @@
-import type { PropertyAddedTodo, Todo } from '../@type';
+import type { FilteredTodo, PropertyAddedTodo } from '../@type';
 import '../style/index.scss';
 import animation from './lib/animation';
 import chart from './lib/chart';
@@ -7,9 +7,10 @@ import fetchTodo from './lib/fetchTodo';
 import generateCard from './lib/generateCard';
 import insertProperty from './lib/insertProperty';
 import locate from './lib/locate';
+import post from './lib/post';
 
 async function init() {
-	const todos: Todo[] = await fetchTodo();
+	const todos: FilteredTodo[] = await fetchTodo();
 	const extendedTodos: PropertyAddedTodo[] = await insertProperty(todos);
 	generateCard(extendedTodos);
 	locate(todos.length);
@@ -17,6 +18,7 @@ async function init() {
 
 	chart;
 	animation();
+	post();
 }
 
 init();

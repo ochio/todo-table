@@ -7,7 +7,7 @@
 		<title>Todo Table</title>
 	</head>
 	<body>
-		<form class="form" id="form">
+		<form class="form" id="form" name="todoForm">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				width="24"
@@ -34,7 +34,8 @@
 				<input type="datetime-local" name="deadline" id="deadline" class="form__deadline" />
 				<label for="deadline" class="form__label">重要度:</label>
 				<input type="number" name="importance" id="importance" class="form__importance" placeholder="0" />
-				<input type="button" value="追加" class="form__submit" />
+				<!-- <input type="submit" value="追加" class="form__submit" /> -->
+				<button type="submit" class="form__submit">追加</button>
 			</div>
 		</form>
 		<template id="template">

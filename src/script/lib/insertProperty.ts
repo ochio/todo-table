@@ -1,7 +1,7 @@
-import type { CardInfo, PropertyAddedTodo, Todo } from '../../@type';
+import type { CardInfo, FilteredTodo, PropertyAddedTodo } from '../../@type';
 import { CANVAS_HEIGHT, CANVAS_WIDTH } from '../setting';
 
-function insertLevel(todos: Todo[]) {
+function insertLevel(todos: FilteredTodo[]) {
 	todos.sort((a, b) => {
 		const aDate = new Date(a.deadline).getTime();
 		const bDate = new Date(b.deadline).getTime();
@@ -22,7 +22,7 @@ function insertLevel(todos: Todo[]) {
 	}
 }
 
-function insertLocation(todos: Todo[]) {
+function insertLocation(todos: FilteredTodo[]) {
 	let MAX_IMPORTANCE = -99999;
 	let MIN_IMPORTANCE = 99999;
 	let FURTHER_DATE = new Date(-864000000000000).getTime();
@@ -40,7 +40,7 @@ function insertLocation(todos: Todo[]) {
 		todos[i].top = calculateTop(todos[i]);
 	}
 
-	function calculateLeft(todo: Todo) {
+	function calculateLeft(todo: FilteredTodo) {
 		const diff = MAX_IMPORTANCE - MIN_IMPORTANCE;
 		const separation = Math.floor(CANVAS_WIDTH / diff);
 
@@ -48,7 +48,7 @@ function insertLocation(todos: Todo[]) {
 		return result;
 	}
 
-	function calculateTop(todo: Todo) {
+	function calculateTop(todo: FilteredTodo) {
 		const diff = (FURTHER_DATE - NEAREST_DATE) / 10000000;
 		const separation = Math.floor(CANVAS_HEIGHT / diff) === 0 ? 25 : Math.floor(CANVAS_HEIGHT / diff);
 
@@ -57,7 +57,7 @@ function insertLocation(todos: Todo[]) {
 	}
 }
 
-function insertProperty(todos: Todo[]) {
+function insertProperty(todos: FilteredTodo[]) {
 	insertLevel(todos);
 	insertLocation(todos);
 
