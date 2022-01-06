@@ -1,14 +1,14 @@
-import { FilteredTodo } from '../../@type';
+import { FilteredTodo, OriginalTodo } from '../../@type';
 
 async function fetchTodo() {
-	const resorceLocation = 'http://localhost:3000/todo';
+	const todos: OriginalTodo[] = JSON.parse(localStorage.getItem('todos') || '[]');
 
-	const todos = await (await fetch(resorceLocation)).json();
+	const filteredTodo: any = todos as FilteredTodo[];
 
 	for (let i = 0; i < todos.length; i++) {
-		todos[i].importance = Number(todos[i].importance);
+		filteredTodo[i].importance = Number(todos[i].importance);
 	}
-	return todos as FilteredTodo[];
+	return filteredTodo as FilteredTodo[];
 }
 
 export default fetchTodo;
