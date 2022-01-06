@@ -34,6 +34,10 @@ function draggable(target: HTMLElement) {
 			target.style.top = '0px';
 			mup();
 		}
+
+		if (Number(target.style.bottom.replace('px', '')) === 0) {
+			target.style.bottom = 'unset';
+		}
 		target.addEventListener('mouseup', mup, false);
 		document.body.addEventListener('mouseleave', mup, false);
 		target.addEventListener('touchend', mup, false);
