@@ -41,19 +41,27 @@ function insertLocation(todos: FilteredTodo[]) {
 	}
 
 	function calculateLeft(todo: FilteredTodo) {
-		const diff = MAX_IMPORTANCE - MIN_IMPORTANCE;
-		const separation = Math.floor(CANVAS_WIDTH / diff);
+		if (todo.left != null) {
+			return todo.left;
+		} else {
+			const diff = MAX_IMPORTANCE - MIN_IMPORTANCE;
+			const separation = Math.floor(CANVAS_WIDTH / diff);
 
-		const result = (todo.importance - MIN_IMPORTANCE) * separation;
-		return result;
+			const result = (todo.importance - MIN_IMPORTANCE) * separation;
+			return result;
+		}
 	}
 
 	function calculateTop(todo: FilteredTodo) {
-		const diff = (FURTHER_DATE - NEAREST_DATE) / 10000000;
-		const separation = Math.floor(CANVAS_HEIGHT / diff) === 0 ? 25 : Math.floor(CANVAS_HEIGHT / diff);
+		if (todo.top != null) {
+			return todo.top;
+		} else {
+			const diff = (FURTHER_DATE - NEAREST_DATE) / 10000000;
+			const separation = Math.floor(CANVAS_HEIGHT / diff) === 0 ? 25 : Math.floor(CANVAS_HEIGHT / diff);
 
-		const result = ((new Date(todo.deadline).getTime() - NEAREST_DATE) / 10000000) * separation;
-		return result;
+			const result = ((new Date(todo.deadline).getTime() - NEAREST_DATE) / 10000000) * separation;
+			return result;
+		}
 	}
 }
 

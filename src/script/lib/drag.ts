@@ -6,25 +6,13 @@ function drag(todoLength: number) {
 		draggable(todoCards[i]);
 	}
 }
+
 function draggable(target: HTMLElement) {
 	let x: number;
 	let y: number;
 
 	target.addEventListener('mousedown', mdown, false);
 	target.addEventListener('touchstart', mdown, false);
-
-	const todos: OriginalTodo[] = JSON.parse(localStorage.getItem('todos') || '[]');
-
-	const storageIndex = getIndex(target.dataset.id);
-
-	function getIndex(searchId?: string) {
-		for (let i = 0; i < todos.length; i++) {
-			if (todos[i].id === searchId) {
-				return i;
-			}
-		}
-		return -1;
-	}
 
 	function mdown(e: MouseEvent | TouchEvent) {
 		const event = e.type === 'mousedown' ? (e as MouseEvent) : (e as TouchEvent).changedTouches[0];
@@ -77,14 +65,26 @@ function draggable(target: HTMLElement) {
 		target.removeEventListener('touchend', mup, false);
 
 		function update() {
+			const todos: OriginalTodo[] = JSON.parse(localStorage.getItem('todos') || '[]');
+
+			const storageIndex = getIndex(target.dataset.id);
+
+			function getIndex(searchId?: string) {
+				for (let i = 0; i < todos.length; i++) {
+					if (todos[i].id === searchId) {
+						return i;
+					}
+				}
+				return -1;
+			}
 			if (storageIndex !== -1) {
 				todos[storageIndex].top = target.dataset.top != null ? target.dataset.top : '';
-				todos[storageIndex].left = target.dataset.top != null ? target.dataset.top : '';
+				todos[storageIndex].left = target.dataset.left != null ? target.dataset.left : '';
+				console.log(todos[storageIndex].top, todos[storageIndex].left);
+				localStorage.setItem('todos', JSON.stringify(todos));
 			} else {
 				throw new Error('invalid id');
 			}
-
-			localStorage.setItem('todos', JSON.stringify(todos));
 		}
 	}
 }
