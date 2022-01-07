@@ -5,9 +5,9 @@ import chart from './lib/chart';
 import drag from './lib/drag';
 import fetchTodo from './lib/fetchTodo';
 import generateCard from './lib/generateCard';
+import post from './lib/handleInput';
 import insertProperty from './lib/insertProperty';
 import locate from './lib/locate';
-import post from './lib/post';
 
 async function init() {
 	const todos: FilteredTodo[] = await fetchTodo();

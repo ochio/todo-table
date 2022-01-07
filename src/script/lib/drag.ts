@@ -1,4 +1,4 @@
-import { OriginalTodo } from '../../@type';
+import handleCard from './handleCard';
 
 function drag(todoLength: number) {
 	const todoCards = document.querySelectorAll<HTMLElement>('[data-id]');
@@ -58,34 +58,11 @@ function draggable(target: HTMLElement) {
 	}
 
 	function mup() {
-		update();
+		handleCard.update(target);
 		document.body.removeEventListener('mousemove', mmove, false);
 		target.removeEventListener('mouseup', mup, false);
 		document.body.removeEventListener('touchmove', mmove, false);
 		target.removeEventListener('touchend', mup, false);
-
-		function update() {
-			const todos: OriginalTodo[] = JSON.parse(localStorage.getItem('todos') || '[]');
-
-			const storageIndex = getIndex(target.dataset.id);
-
-			function getIndex(searchId?: string) {
-				for (let i = 0; i < todos.length; i++) {
-					if (todos[i].id === searchId) {
-						return i;
-					}
-				}
-				return -1;
-			}
-			if (storageIndex !== -1) {
-				todos[storageIndex].top = target.dataset.top != null ? target.dataset.top : '';
-				todos[storageIndex].left = target.dataset.left != null ? target.dataset.left : '';
-				console.log(todos[storageIndex].top, todos[storageIndex].left);
-				localStorage.setItem('todos', JSON.stringify(todos));
-			} else {
-				throw new Error('invalid id');
-			}
-		}
 	}
 }
 

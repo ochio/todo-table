@@ -1,4 +1,5 @@
 import { OriginalTodo } from '../../@type';
+import handleCard from './handleCard';
 
 function handleInput() {
 	const form = <HTMLFormElement>document.getElementById('form');
@@ -15,7 +16,7 @@ function handleInput() {
 			...getInput(),
 		};
 
-		save(input);
+		handleCard.save(input);
 
 		function getInput() {
 			const title = formData.get('title') as string;
@@ -41,14 +42,6 @@ function handleInput() {
 			return { title, deadline, importance };
 		}
 	});
-}
-
-function save(input: OriginalTodo) {
-	const todos: OriginalTodo[] = JSON.parse(localStorage.getItem('todos') || '[]');
-	const newTodo = { ...input };
-	todos.push(newTodo);
-
-	localStorage.setItem('todos', JSON.stringify(todos));
 }
 
 export default handleInput;
