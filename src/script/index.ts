@@ -10,7 +10,7 @@ import locate from './lib/locate';
 import todoData from './lib/todoData';
 
 async function init() {
-	const todos: FilteredTodo[] = await todoData.fetch();
+	const todos: FilteredTodo[] = await todoData.formated();
 	const extendedTodos: PropertyAddedTodo[] = await insertProperty(todos);
 	generateCard(extendedTodos);
 	locate(todos.length);
