@@ -1,4 +1,4 @@
-import handleCard from './handleCard';
+import handleCard from './todoData';
 
 function drag(todoLength: number) {
 	const todoCards = document.querySelectorAll<HTMLElement>('[data-id]');

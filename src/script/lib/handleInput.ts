@@ -1,5 +1,5 @@
 import { OriginalTodo } from '../../@type';
-import handleCard from './handleCard';
+import handleCard from './todoData';
 
 function handleInput() {
 	const form = <HTMLFormElement>document.getElementById('form');
