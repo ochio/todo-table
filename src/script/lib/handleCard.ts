@@ -1,0 +1,4 @@
+const handleCard = {
+	update() {},
+	delete() {},
+};
