@@ -4,7 +4,12 @@ function handleMenu() {
 	const cards = Array.from(document.getElementsByClassName('js-card'));
 
 	for (let i = 0; i < cards.length; i++) {
-		const element = cards[i];
-		element.addEventListener;
+		const element = cards[i] as HTMLElement;
+		element.addEventListener('contextmenu', (e) => {
+			e.preventDefault();
+			menu.classList.add('is-show');
+		});
 	}
 }
+
+export default handleMenu;
