@@ -1,4 +1,4 @@
-import handleCard from './todoData';
+import todoData from './todoData';
 
 function drag(todoLength: number) {
 	const todoCards = document.querySelectorAll<HTMLElement>('[data-id]');
@@ -11,10 +11,7 @@ function draggable(target: HTMLElement) {
 	let x: number;
 	let y: number;
 
-	target.addEventListener('mousedown', mdown, false);
-	target.addEventListener('touchstart', mdown, false);
-
-	function mdown(e: MouseEvent | TouchEvent) {
+	target.onmousedown = (e: MouseEvent | TouchEvent) => {
 		const event = e.type === 'mousedown' ? (e as MouseEvent) : (e as TouchEvent).changedTouches[0];
 
 		//要素内の相対座標を取得
@@ -23,47 +20,49 @@ function draggable(target: HTMLElement) {
 
 		document.body.addEventListener('mousemove', mmove, false);
 		document.body.addEventListener('touchmove', mmove, false);
-	}
 
-	function mmove(e: MouseEvent | TouchEvent) {
-		const event = e.type === 'mousemove' ? (e as MouseEvent) : (e as TouchEvent).changedTouches[0];
+		target.onmouseup = () => {
+			mup();
+		};
 
-		e.preventDefault();
+		target.ondragstart = () => {
+			return false;
+		};
 
-		setPosition('top', event.pageY - y);
-		setPosition('left', event.pageX - x);
+		function mmove(e: MouseEvent | TouchEvent) {
+			const event = e.type === 'mousemove' ? (e as MouseEvent) : (e as TouchEvent).changedTouches[0];
 
-		target.addEventListener('mouseup', mup, false);
-		document.body.addEventListener('mouseleave', mup, false);
-		target.addEventListener('touchend', mup, false);
-		document.body.addEventListener('touchleave', mup, false);
+			e.preventDefault();
 
-		function setPosition(type: 'top' | 'right' | 'bottom' | 'left', position: number) {
-			let prop = String(position);
-			if (position < 0) {
-				prop = '0';
-				mup();
+			setPosition('top', event.pageY - y);
+			setPosition('left', event.pageX - x);
+
+			function setPosition(type: 'top' | 'right' | 'bottom' | 'left', position: number) {
+				let prop = String(position);
+				if (position < 0) {
+					prop = '0';
+					mup();
+				}
+
+				if (Number(target.style.bottom.replace('px', '')) === 0) {
+					target.style.bottom = 'unset';
+				}
+				if (Number(target.style.right.replace('px', '')) === 0) {
+					target.style.right = 'unset';
+				}
+
+				target.dataset[type] = prop;
+				target.style[type] = prop + 'px';
 			}
-
-			if (Number(target.style.bottom.replace('px', '')) === 0) {
-				target.style.bottom = 'unset';
-			}
-			if (Number(target.style.right.replace('px', '')) === 0) {
-				target.style.right = 'unset';
-			}
-
-			target.dataset[type] = prop;
-			target.style[type] = prop + 'px';
 		}
-	}
 
-	function mup() {
-		handleCard.update(target);
-		document.body.removeEventListener('mousemove', mmove, false);
-		target.removeEventListener('mouseup', mup, false);
-		document.body.removeEventListener('touchmove', mmove, false);
-		target.removeEventListener('touchend', mup, false);
-	}
+		function mup() {
+			todoData.update(target);
+			document.body.removeEventListener('mousemove', mmove, false);
+			document.body.removeEventListener('touchmove', mmove, false);
+			target.onmouseup = null;
+		}
+	};
 }
 
 export default drag;
