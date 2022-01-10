@@ -5,7 +5,6 @@ import chart from './lib/chart';
 import drag from './lib/drag';
 import generateCard from './lib/generateCard';
 import post from './lib/handleInput';
-import handleMenu from './lib/handleMenu';
 import insertProperty from './lib/insertProperty';
 import locate from './lib/locate';
 import todoData from './lib/todoData';
@@ -20,7 +19,6 @@ async function init() {
 	chart;
 	animation();
 	post();
-	handleMenu();
 }
 
 init();

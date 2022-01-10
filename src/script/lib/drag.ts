@@ -1,3 +1,4 @@
+import handleMenu from './handleMenu';
 import todoData from './todoData';
 
 function drag(todoLength: number) {
@@ -10,6 +11,11 @@ function drag(todoLength: number) {
 function draggable(target: HTMLElement) {
 	let x: number;
 	let y: number;
+
+	target.oncontextmenu = (e: MouseEvent) => {
+		document.body.removeEventListener('mousemove', mmove, false);
+		handleMenu(e);
+	};
 
 	target.onmousedown = (e: MouseEvent | TouchEvent) => {
 		const event = e.type === 'mousedown' ? (e as MouseEvent) : (e as TouchEvent).changedTouches[0];
@@ -28,41 +34,40 @@ function draggable(target: HTMLElement) {
 		target.ondragstart = () => {
 			return false;
 		};
-
-		function mmove(e: MouseEvent | TouchEvent) {
-			const event = e.type === 'mousemove' ? (e as MouseEvent) : (e as TouchEvent).changedTouches[0];
-
-			e.preventDefault();
-
-			setPosition('top', event.pageY - y);
-			setPosition('left', event.pageX - x);
-
-			function setPosition(type: 'top' | 'right' | 'bottom' | 'left', position: number) {
-				let prop = String(position);
-				if (position < 0) {
-					prop = '0';
-					mup();
-				}
-
-				if (Number(target.style.bottom.replace('px', '')) === 0) {
-					target.style.bottom = 'unset';
-				}
-				if (Number(target.style.right.replace('px', '')) === 0) {
-					target.style.right = 'unset';
-				}
-
-				target.dataset[type] = prop;
-				target.style[type] = prop + 'px';
-			}
-		}
-
-		function mup() {
-			todoData.update(target);
-			document.body.removeEventListener('mousemove', mmove, false);
-			document.body.removeEventListener('touchmove', mmove, false);
-			target.onmouseup = null;
-		}
 	};
+	function mmove(e: MouseEvent | TouchEvent) {
+		const event = e.type === 'mousemove' ? (e as MouseEvent) : (e as TouchEvent).changedTouches[0];
+
+		e.preventDefault();
+
+		setPosition('top', event.pageY - y);
+		setPosition('left', event.pageX - x);
+
+		function setPosition(type: 'top' | 'right' | 'bottom' | 'left', position: number) {
+			let prop = String(position);
+			if (position < 0) {
+				prop = '0';
+				mup();
+			}
+
+			if (Number(target.style.bottom.replace('px', '')) === 0) {
+				target.style.bottom = 'unset';
+			}
+			if (Number(target.style.right.replace('px', '')) === 0) {
+				target.style.right = 'unset';
+			}
+
+			target.dataset[type] = prop;
+			target.style[type] = prop + 'px';
+		}
+	}
+
+	function mup() {
+		todoData.update(target);
+		document.body.removeEventListener('mousemove', mmove, false);
+		document.body.removeEventListener('touchmove', mmove, false);
+		target.onmouseup = null;
+	}
 }
 
 export default drag;

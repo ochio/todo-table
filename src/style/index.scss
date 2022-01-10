@@ -10,6 +10,7 @@
 	position: absolute;
 	width: 200px;
 	padding: 8px 0px 8px 5px;
+	cursor: pointer;
 	border-radius: 8px;
 	box-shadow: 1px 1px 5px #ddd;
 	&[data-level='high'] {
@@ -107,5 +108,21 @@
 				background: #76b8e8;
 			}
 		}
+	}
+}
+
+.menu {
+	position: fixed;
+	z-index: 9999;
+	display: none;
+	width: 130px;
+	padding: 5px;
+	background-color: #f0f0f0;
+	border: 1px solid #999999;
+	&.is-show {
+		display: block;
+	}
+	&__list {
+		padding: 5px;
 	}
 }
