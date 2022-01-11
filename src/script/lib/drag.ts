@@ -1,5 +1,6 @@
-import handleMenu from './toggleMenu';
+import handleMenu from './handleMenu';
 import todoData from './todoData';
+import toggleMenu from './toggleMenu';
 
 function drag(todoLength: number) {
 	const todoCards = document.querySelectorAll<HTMLElement>('[data-id]');
@@ -13,8 +14,9 @@ function draggable(target: HTMLElement) {
 	let y: number;
 
 	target.oncontextmenu = (e: MouseEvent) => {
+		toggleMenu(e);
+		handleMenu(target);
 		document.body.removeEventListener('mousemove', mmove, false);
-		handleMenu(e);
 	};
 
 	target.onmousedown = (e: MouseEvent | TouchEvent) => {

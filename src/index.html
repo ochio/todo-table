@@ -43,11 +43,13 @@
 				<p class="card__title" data-js="title"></p>
 			</div>
 		</template>
-		<ul class="menu" id="menu">
-			<li class="menu__list">更新</li>
-			<li class="menu__list">削除</li>
-			<li class="menu__list">最初の位置に戻す</li>
-		</ul>
+		<template id="menu-template">
+			<ul class="menu" id="menu">
+				<li class="menu__list" id="update">更新</li>
+				<li class="menu__list" id="delete">削除</li>
+				<li class="menu__list" id="reset">最初の位置に戻す</li>
+			</ul>
+		</template>
 		<div class="container" id="container">
 			<canvas id="chart"></canvas>
 		</div>

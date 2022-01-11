@@ -1,4 +1,10 @@
+import todoData from './todoData';
+
 const handleCard = {
 	update() {},
-	delete() {},
+	delete(target: HTMLElement) {
+		todoData.delete(target);
+	},
 };
+
+export default handleCard;

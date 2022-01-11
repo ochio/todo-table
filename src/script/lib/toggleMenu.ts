@@ -1,19 +1,32 @@
-const menu = document.getElementById('menu');
-if (menu == null) throw new Error('no menu');
+const template = <HTMLTemplateElement>document.getElementById('menu-template');
+const content = template.content;
+
+if (template == null) throw new Error('no menu');
 
 document.body.addEventListener('click', function (e) {
-	if (menu.classList.contains('is-show')) {
-		menu.classList.remove('is-show');
+	const menu = document.getElementById('menu');
+	if (menu != null) {
+		menu.remove();
 	}
 });
 
 function toggleMenu(e: MouseEvent) {
 	e.preventDefault();
 	e.stopImmediatePropagation();
-	if (menu == null) throw new Error('no menu');
-	menu.style.left = e.pageX + 'px';
-	menu.style.top = e.pageY + 'px';
-	menu.classList.add('is-show');
+	if ('content' in document.createElement('template')) {
+		const clone = document.importNode(content, true);
+		const already = document.getElementById('menu');
+		if (already != null) {
+			return;
+		}
+		const menu = clone.getElementById('menu');
+		if (menu == null) throw new Error('no menu');
+		menu.style.left = e.pageX + 'px';
+		menu.style.top = e.pageY + 'px';
+		document.querySelector('#container')!.appendChild(menu);
+	} else {
+		console.log('template要素に対応していません。');
+	}
 }
 
 export default toggleMenu;
