@@ -7,7 +7,7 @@ document.body.addEventListener('click', function (e) {
 	}
 });
 
-function handleMenu(e: MouseEvent) {
+function toggleMenu(e: MouseEvent) {
 	e.preventDefault();
 	e.stopImmediatePropagation();
 	if (menu == null) throw new Error('no menu');
@@ -16,4 +16,4 @@ function handleMenu(e: MouseEvent) {
 	menu.classList.add('is-show');
 }
 
-export default handleMenu;
+export default toggleMenu;
