@@ -44,6 +44,9 @@ function insertLocation(todos: FilteredTodo[]) {
 		if (todo.left != null) {
 			return todo.left;
 		} else {
+			if (MAX_IMPORTANCE === MIN_IMPORTANCE) {
+				MIN_IMPORTANCE--;
+			}
 			const diff = MAX_IMPORTANCE - MIN_IMPORTANCE;
 			const separation = Math.floor(CANVAS_WIDTH / diff);
 
