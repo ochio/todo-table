@@ -20,6 +20,10 @@ function draggable(target: HTMLElement) {
 	};
 
 	target.onmousedown = (e: MouseEvent | TouchEvent) => {
+		const isMenuShow = document.getElementById('menu');
+		if (isMenuShow != null) {
+			return;
+		}
 		const event = e.type === 'mousedown' ? (e as MouseEvent) : (e as TouchEvent).changedTouches[0];
 
 		//要素内の相対座標を取得
