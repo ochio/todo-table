@@ -59,10 +59,14 @@ function insertLocation(todos: FilteredTodo[]) {
 		if (todo.top != null) {
 			return todo.top;
 		} else {
+			if (FURTHER_DATE === NEAREST_DATE) {
+				return 0;
+			}
 			const diff = (FURTHER_DATE - NEAREST_DATE) / 10000000;
 			const separation = Math.floor(CANVAS_HEIGHT / diff) === 0 ? 25 : Math.floor(CANVAS_HEIGHT / diff);
 
-			const result = ((new Date(todo.deadline).getTime() - NEAREST_DATE) / 10000000) * separation;
+			const result = ((new Date(todo.deadline).getTime() - NEAREST_DATE) / 100) * separation;
+
 			return result;
 		}
 	}

@@ -56,10 +56,10 @@ function draggable(target: HTMLElement) {
 				mup();
 			}
 
-			if (Number(target.style.bottom.replace('px', '')) === 0) {
+			if (Number(target.style.bottom.replace('px', '')) <= 0) {
 				target.style.bottom = 'unset';
 			}
-			if (Number(target.style.right.replace('px', '')) === 0) {
+			if (Number(target.style.right.replace('px', '')) <= 0) {
 				target.style.right = 'unset';
 			}
 

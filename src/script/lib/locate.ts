@@ -1,4 +1,4 @@
-import { CANVAS_HEIGHT, CANVAS_WIDTH, CARD_SIZE } from '../setting';
+import { CANVAS_HEIGHT, CANVAS_WIDTH, CARD_SIZE, MAX_CANVAS_HEIGHT } from '../setting';
 
 function locate(todoLength: number) {
 	const todoCards = document.querySelectorAll<HTMLElement>('[data-id]');
@@ -10,7 +10,8 @@ function locate(todoLength: number) {
 			card.style.left = (card.dataset.left || '0') + 'px';
 		}
 
-		if (Number(card.dataset.top) >= CANVAS_HEIGHT) {
+		const cardHight = card.clientHeight;
+		if (Number(card.dataset.top) + cardHight >= Math.min(MAX_CANVAS_HEIGHT, CANVAS_HEIGHT)) {
 			card.style.bottom = '0px';
 		} else {
 			card.style.top = (card.dataset.top || '0') + 'px';
