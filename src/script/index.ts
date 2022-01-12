@@ -9,13 +9,20 @@ import insertProperty from './lib/insertProperty';
 import locate from './lib/locate';
 import todoData from './lib/todoData';
 
-async function init() {
+export async function initCard() {
+	const cards = document.getElementsByClassName('js-card');
+	for (let i = 0; i < cards.length; i++) {
+		cards[i].remove();
+	}
 	const todos: FilteredTodo[] = await todoData.formated();
 	const extendedTodos: PropertyAddedTodo[] = await insertProperty(todos);
 	generateCard(extendedTodos);
 	locate(todos.length);
 	drag(todos.length);
+}
 
+async function init() {
+	initCard();
 	chart;
 	animation();
 	handleInput();

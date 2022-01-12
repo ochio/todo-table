@@ -1,5 +1,5 @@
 import { OriginalTodo } from '../../@type';
-import handleCard from './todoData';
+import todoData from './todoData';
 
 function handleInput() {
 	const form = <HTMLFormElement>document.getElementById('form');
@@ -16,7 +16,8 @@ function handleInput() {
 			...getInput(),
 		};
 
-		handleCard.save(input);
+		todoData.save(input);
+		location.reload();
 
 		function getInput() {
 			const title = formData.get('title') as string;
