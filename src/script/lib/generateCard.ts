@@ -22,6 +22,7 @@ async function generateCard(todos: PropertyAddedTodo[]) {
 			fragment.appendChild(addedClone);
 		}
 		document.querySelector('#container')!.appendChild(fragment);
+		setTitleHeight();
 	} else {
 		console.log('template要素に対応していません。');
 	}
@@ -34,10 +35,17 @@ function addDataToDOM(clone: DocumentFragment, data: CardInfo) {
 	(clone.querySelector('[data-id="-1"]')! as HTMLElement).dataset.id = data.id;
 	(clone.querySelector('[data-level="high"]')! as HTMLElement).dataset.level = data.level;
 	(clone.querySelector('[data-importance="-1"]')! as HTMLElement).dataset.importance = data.importance.toString();
-	clone.querySelector('[data-js="title"]')!.textContent = data.title;
-	clone.querySelector('[data-js="deadline"]')!.textContent = data.deadline;
+	(clone.querySelector('[data-js="title"]')! as HTMLInputElement).value = data.title;
+	(clone.querySelector('[data-js="deadline"]')! as HTMLInputElement).value = data.deadline;
 
 	return clone;
+}
+
+function setTitleHeight() {
+	const textareas = document.querySelectorAll('[data-js="title"]');
+	for (let i = 0; i < textareas.length; i++) {
+		(textareas[i] as HTMLInputElement).style.height = textareas[i].scrollHeight + 'px';
+	}
 }
 
 export default generateCard;

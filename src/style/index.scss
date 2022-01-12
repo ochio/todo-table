@@ -23,7 +23,9 @@
 		background-color: #76b8e8;
 	}
 	&__title {
+		min-height: 15px;
 		font-size: 1.2rem;
+		resize: none;
 	}
 	&__stats {
 		margin-top: 5px;
