@@ -1,4 +1,5 @@
 import type { CardInfo, PropertyAddedTodo } from '../../@type';
+import todoData from './todoData';
 
 async function generateCard(todos: PropertyAddedTodo[]) {
 	if ('content' in document.createElement('template')) {
@@ -23,6 +24,7 @@ async function generateCard(todos: PropertyAddedTodo[]) {
 		}
 		document.querySelector('#container')!.appendChild(fragment);
 		setTitleHeight();
+		addInputEvent();
 	} else {
 		console.log('template要素に対応していません。');
 	}
@@ -44,7 +46,26 @@ function addDataToDOM(clone: DocumentFragment, data: CardInfo) {
 function setTitleHeight() {
 	const textareas = document.querySelectorAll('[data-js="title"]');
 	for (let i = 0; i < textareas.length; i++) {
-		(textareas[i] as HTMLInputElement).style.height = textareas[i].scrollHeight + 'px';
+		const textarea = textareas[i] as HTMLInputElement;
+		textarea.style.height = textareas[i].scrollHeight + 'px';
+		textarea.addEventListener('input', () => {
+			textarea.style.height = textarea.clientHeight + 'px';
+			const scrollHeight = textarea.scrollHeight;
+			textarea.style.height = scrollHeight + 'px';
+		});
+	}
+}
+
+function addInputEvent() {
+	const cards = document.querySelectorAll('[data-id]');
+	for (let i = 0; i < cards.length; i++) {
+		const target = cards[i] as HTMLElement;
+		const titleArea = target.querySelector('[data-js="title"]');
+		if (titleArea == null) throw new Error('no title');
+
+		titleArea.addEventListener('blur', () => {
+			todoData.update(target);
+		});
 	}
 }
 

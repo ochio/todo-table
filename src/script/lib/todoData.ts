@@ -41,6 +41,13 @@ const todoData = {
 		if (storageIndex !== -1) {
 			todos[storageIndex].top = target.dataset.top != null ? target.dataset.top : '';
 			todos[storageIndex].left = target.dataset.left != null ? target.dataset.left : '';
+			const updateData = {
+				deadline: (target.querySelector('[data-js="deadline"]')! as HTMLInputElement).value,
+				title: (target.querySelector('[data-js="title"]')! as HTMLInputElement).value,
+			};
+			todos[storageIndex].title = updateData.title;
+			todos[storageIndex].deadline = updateData.deadline;
+
 			todoData.store(todos);
 		} else {
 			throw new Error('invalid id');

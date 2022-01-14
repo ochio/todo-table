@@ -1,7 +1,9 @@
 import todoData from './todoData';
 
 const handleCard = {
-	update() {},
+	update(target: HTMLElement) {
+		todoData.update(target);
+	},
 	delete(target: HTMLElement) {
 		target.remove();
 		todoData.delete(target);
