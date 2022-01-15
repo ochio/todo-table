@@ -8,6 +8,9 @@ const handleCard = {
 		target.remove();
 		todoData.delete(target);
 	},
+	reset(target: HTMLElement) {
+		todoData.reset.location(target);
+	},
 };
 
 export default handleCard;

@@ -56,16 +56,7 @@ const todoData = {
 	delete(target: HTMLElement) {
 		const todos: OriginalTodo[] = todoData.fetch();
 
-		const storageIndex = getIndex(target.dataset.id);
-
-		function getIndex(searchId?: string) {
-			for (let i = 0; i < todos.length; i++) {
-				if (todos[i].id === searchId) {
-					return i;
-				}
-			}
-			return -1;
-		}
+		const storageIndex = getIndex(target.dataset.id, todos);
 
 		if (storageIndex !== -1) {
 			todos.splice(storageIndex, 1);
@@ -74,6 +65,30 @@ const todoData = {
 			throw new Error('invalid id');
 		}
 	},
+	reset: {
+		location(target: HTMLElement) {
+			const todos: OriginalTodo[] = todoData.fetch();
+
+			const storageIndex = getIndex(target.dataset.id, todos);
+
+			if (storageIndex !== -1) {
+				delete todos[storageIndex].top;
+				delete todos[storageIndex].left;
+				todoData.store(todos);
+				location.reload();
+			} else {
+				throw new Error('invalid id');
+			}
+		},
+	},
 };
+function getIndex(searchId: string = '-1', todos: OriginalTodo[]) {
+	for (let i = 0; i < todos.length; i++) {
+		if (todos[i].id === searchId) {
+			return i;
+		}
+	}
+	return -1;
+}
 
 export default todoData;
