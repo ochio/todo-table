@@ -1,13 +1,13 @@
 import { FilteredTodo, OriginalTodo } from '../../@type';
 
 const todoData = {
-	fetch() {
-		const todos: OriginalTodo[] = JSON.parse(localStorage.getItem('todos') || '[]');
+	fetch(key: string) {
+		const todos: OriginalTodo[] = JSON.parse(localStorage.getItem(key) || '[]');
 
 		return todos;
 	},
 	formated() {
-		const todos: any = todoData.fetch();
+		const todos: any = todoData.fetch('todos');
 		const filteredTodo: any = todos as FilteredTodo[];
 
 		for (let i = 0; i < todos.length; i++) {
@@ -15,18 +15,35 @@ const todoData = {
 		}
 		return filteredTodo as FilteredTodo[];
 	},
-	store(todos: OriginalTodo[]) {
-		localStorage.setItem('todos', JSON.stringify(todos));
+	store(key: string, todos: OriginalTodo[]) {
+		localStorage.setItem(key, JSON.stringify(todos));
 	},
 	save(input: OriginalTodo) {
-		const todos: OriginalTodo[] = todoData.fetch();
+		const todos: OriginalTodo[] = todoData.fetch('todos');
 		const newTodo = { ...input };
 		todos.push(newTodo);
 
-		todoData.store(todos);
+		todoData.store('todos', todos);
+	},
+	extract(target: HTMLElement): OriginalTodo {
+		const todoDetail = {
+			id: target.dataset.id!,
+			title: (target.querySelector('[data-js="title"]')! as HTMLInputElement).value,
+			deadline: (target.querySelector('[data-js="deadline"]')! as HTMLInputElement).value,
+			importance: target.dataset.importance || '0',
+		};
+
+		return todoDetail;
+	},
+	archive(target: HTMLElement) {
+		const archives: OriginalTodo[] = todoData.fetch('archives');
+		const doneTask = todoData.extract(target);
+		archives.push(doneTask);
+
+		todoData.store('archives', archives);
 	},
 	update(target: HTMLElement) {
-		const todos: OriginalTodo[] = todoData.fetch();
+		const todos: OriginalTodo[] = todoData.fetch('todos');
 
 		const storageIndex = getIndex(target.dataset.id);
 
@@ -48,33 +65,33 @@ const todoData = {
 			todos[storageIndex].title = updateData.title;
 			todos[storageIndex].deadline = updateData.deadline;
 
-			todoData.store(todos);
+			todoData.store('todos', todos);
 		} else {
 			throw new Error('invalid id');
 		}
 	},
 	delete(target: HTMLElement) {
-		const todos: OriginalTodo[] = todoData.fetch();
+		const todos: OriginalTodo[] = todoData.fetch('todos');
 
 		const storageIndex = getIndex(target.dataset.id, todos);
 
 		if (storageIndex !== -1) {
 			todos.splice(storageIndex, 1);
-			todoData.store(todos);
+			todoData.store('todos', todos);
 		} else {
 			throw new Error('invalid id');
 		}
 	},
 	reset: {
 		location(target: HTMLElement) {
-			const todos: OriginalTodo[] = todoData.fetch();
+			const todos: OriginalTodo[] = todoData.fetch('todos');
 
 			const storageIndex = getIndex(target.dataset.id, todos);
 
 			if (storageIndex !== -1) {
 				delete todos[storageIndex].top;
 				delete todos[storageIndex].left;
-				todoData.store(todos);
+				todoData.store('todos', todos);
 				location.reload();
 			} else {
 				throw new Error('invalid id');

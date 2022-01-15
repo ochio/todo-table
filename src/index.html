@@ -39,12 +39,14 @@
 		</form>
 		<template id="template">
 			<div class="card js-card" data-id="-1" data-level="high" data-importance="-1" data-top="0" data-left="0">
+				<button data-icon="complete">done</button>
 				<input class="card__deadline" data-js="deadline" />
 				<textarea class="card__title" data-js="title"></textarea>
 			</div>
 		</template>
 		<template id="menu-template">
 			<ul class="menu" id="menu">
+				<li class="menu__list" id="done">完了</li>
 				<li class="menu__list" id="delete">削除</li>
 				<li class="menu__list" id="reset">最初の位置に戻す</li>
 			</ul>

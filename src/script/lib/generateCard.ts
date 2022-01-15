@@ -1,5 +1,5 @@
 import type { CardInfo, PropertyAddedTodo } from '../../@type';
-import todoData from './todoData';
+import handleCard from './handleCard';
 
 async function generateCard(todos: PropertyAddedTodo[]) {
 	if ('content' in document.createElement('template')) {
@@ -25,6 +25,7 @@ async function generateCard(todos: PropertyAddedTodo[]) {
 		document.querySelector('#container')!.appendChild(fragment);
 		setTitleHeight();
 		addInputEvent();
+		addDoneEvent();
 	} else {
 		console.log('template要素に対応していません。');
 	}
@@ -64,7 +65,20 @@ function addInputEvent() {
 		if (titleArea == null) throw new Error('no title');
 
 		titleArea.addEventListener('blur', () => {
-			todoData.update(target);
+			handleCard.update(target);
+		});
+	}
+}
+
+function addDoneEvent() {
+	const cards = document.querySelectorAll('[data-id]');
+	for (let i = 0; i < cards.length; i++) {
+		const target = cards[i] as HTMLElement;
+		const doneBtn = target.querySelector('[data-icon="complete"]');
+		if (doneBtn == null) throw new Error('no doneBtn');
+
+		doneBtn.addEventListener('click', () => {
+			handleCard.archive(target);
 		});
 	}
 }
