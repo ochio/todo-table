@@ -7,7 +7,8 @@
 		"tsc": "tsc",
 		"mock": "json-server --watch data/todo.json",
 		"build": "webpack --mode=production",
-		"dev": "webpack serve --mode=development & npm run mock",
+		"dev:mock": "webpack serve --mode=development & npm run mock",
+		"dev": "webpack serve --mode=development",
 		"start": "npm run build"
 	},
 	"keywords": [],
