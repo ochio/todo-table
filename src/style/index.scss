@@ -24,11 +24,19 @@
 	}
 	&__title {
 		min-height: 15px;
+		margin-top: 5px;
 		font-size: 1.2rem;
 		resize: none;
 	}
-	&__stats {
-		margin-top: 5px;
+	&__complete {
+		position: absolute;
+		top: 8px;
+		right: 8px;
+		fill: #222;
+		transition: 0.3s;
+		&:hover {
+			fill: #fff;
+		}
 	}
 }
 
