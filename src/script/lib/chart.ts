@@ -1,11 +1,11 @@
-import { CANVAS_HEIGHT, CANVAS_WIDTH, MAX_CANVAS_HEIGHT } from '../setting';
+import { CANVAS_HEIGHT, CANVAS_WIDTH } from '../setting';
 
 export default window.onload = function () {
 	// canvas要素を取得し、サイズ設定
 	const canvas = <HTMLCanvasElement>document.getElementById('chart');
 	if (canvas == null) throw new Error('no canvas');
 	canvas.width = CANVAS_WIDTH;
-	canvas.height = Math.min(MAX_CANVAS_HEIGHT, CANVAS_HEIGHT);
+	canvas.height = CANVAS_HEIGHT;
 	const oX = Math.ceil(CANVAS_WIDTH / 2);
 	const oY = Math.ceil(CANVAS_HEIGHT / 2);
 
