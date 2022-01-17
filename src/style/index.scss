@@ -135,3 +135,42 @@
 		padding: 5px;
 	}
 }
+
+.blinking {
+	&-red {
+		animation: blink-red 1s ease-in-out infinite alternate;
+	}
+	&-orange {
+		animation: blink-orange 1s ease-in-out infinite alternate;
+	}
+	&-blue {
+		animation: blink-blue 1s ease-in-out infinite alternate;
+	}
+}
+
+@keyframes blink-red {
+	0% {
+		box-shadow: 0 0 10px #f9dad5, 0 0 15px #fceae7;
+	}
+	100% {
+		box-shadow: 0 0 30px #e35f4d, 0 0 40px #fceae7;
+	}
+}
+
+@keyframes blink-orange {
+	0% {
+		box-shadow: 0 0 10px #feecca, 0 0 15px #fddda1;
+	}
+	100% {
+		box-shadow: 0 0 30px #a68445, 0 0 40px #fddda1;
+	}
+}
+
+@keyframes blink-blue {
+	0% {
+		box-shadow: 0 0 10px #e1f0fa, 0 0 15px #cbe4f6;
+	}
+	100% {
+		box-shadow: 0 0 30px #5b8fb3, 0 0 40px #cbe4f6;
+	}
+}
