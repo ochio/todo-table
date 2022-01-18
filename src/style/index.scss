@@ -137,13 +137,13 @@
 }
 
 .blinking {
-	&-red {
+	&--high {
 		animation: blink-red 1s ease-in-out infinite alternate;
 	}
-	&-orange {
+	&--middle {
 		animation: blink-orange 1s ease-in-out infinite alternate;
 	}
-	&-blue {
+	&--low {
 		animation: blink-blue 1s ease-in-out infinite alternate;
 	}
 }
