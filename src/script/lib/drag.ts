@@ -1,4 +1,5 @@
 import handleMenu from './handleMenu';
+import checkOverlappling from './observeOverlapping';
 import todoData from './todoData';
 import toggleMenu from './toggleMenu';
 
@@ -73,6 +74,7 @@ function draggable(target: HTMLElement) {
 		document.body.removeEventListener('mousemove', mmove, false);
 		document.body.removeEventListener('touchmove', mmove, false);
 		target.onmouseup = null;
+		checkOverlappling(target);
 	}
 }
 

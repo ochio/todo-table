@@ -19,3 +19,11 @@ export type PropertyAddedTodo = Todo & {
 export type CardInfo = PropertyAddedTodo & {
 	key: number;
 };
+
+export type BoundingClientRectTable = {
+	[key: string]: ReturnType<typeof createBoundingClientRect>;
+};
+
+export type BlinkingTable = {
+	[key: string]: boolean;
+};

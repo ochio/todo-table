@@ -7,6 +7,7 @@ import generateCard from './lib/generateCard';
 import handleInput from './lib/handleInput';
 import insertProperty from './lib/insertProperty';
 import locate from './lib/locate';
+import { initialCheckOverlappling } from './lib/observeOverlapping';
 import todoData from './lib/todoData';
 
 export async function initCard() {
@@ -18,6 +19,7 @@ export async function initCard() {
 	const extendedTodos: PropertyAddedTodo[] = await insertProperty(todos);
 	generateCard(extendedTodos);
 	locate(todos.length);
+	initialCheckOverlappling();
 	drag(todos.length);
 }
 
