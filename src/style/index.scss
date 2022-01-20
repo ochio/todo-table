@@ -174,3 +174,17 @@
 		box-shadow: 0 0 30px #5b8fb3, 0 0 40px #cbe4f6;
 	}
 }
+
+.toArchiveListWrap {
+	margin-left: auto;
+	text-align: right;
+}
+
+.toArchiveList {
+	padding: 10px;
+	font-size: 1.4rem;
+	&::after {
+		margin-left: 10px;
+		content: '>';
+	}
+}
