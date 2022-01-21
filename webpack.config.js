@@ -5,12 +5,27 @@ module.exports = {
 	devServer: {
 		open: true,
 	},
-	entry: './src/script/index.ts',
+	entry: {
+		index: './src/script/index.ts',
+		archives: './src/script/archives.ts',
+	},
 	output: {
 		path: path.resolve(__dirname, 'dist'),
-		filename: 'main.js',
+		filename: '[name].js',
 	},
-	plugins: [new HtmlWebpackPlugin({ template: './src/index.html' })],
+	plugins: [
+		new HtmlWebpackPlugin({
+			template: './src/index.html',
+			inject: true,
+			chunks: ['index'],
+		}),
+		new HtmlWebpackPlugin({
+			template: './src/archives.html',
+			inject: true,
+			chunks: ['archives'],
+			filename: 'archives.html',
+		}),
+	],
 	module: {
 		rules: [
 			{
