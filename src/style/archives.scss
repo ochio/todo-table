@@ -1,6 +1,31 @@
 @use './reset';
 
+.contentsWrap {
+	width: 640px;
+	padding-top: 80px;
+	margin: 0 auto;
+}
+
 .title {
 	font-size: 1.5rem;
-	color: #76b8e8;
+	&::before {
+		display: inline-block;
+		width: 10px;
+		height: 20px;
+		margin-right: 10px;
+		vertical-align: middle;
+		content: '';
+		background: #222;
+	}
+}
+
+.archivesList {
+	height: 70vh;
+	margin-top: 15px;
+	overflow: scroll;
+	&__item {
+		padding: 8px;
+		font-size: 1.3rem;
+		border-bottom: 1px solid #ddd;
+	}
 }
