@@ -1,5 +1,8 @@
 import '../style/archives.scss';
+import initArchiveList from './lib/initArchiveList';
 
-function init() {}
+function init() {
+	initArchiveList();
+}
 
 init();
