@@ -10,8 +10,12 @@ function initArchiveList() {
 
 		const fragment = document.createDocumentFragment();
 
-		const clone = document.importNode(content, true);
-		fragment.appendChild(clone);
+		for (let i = 0; i < archivedData.length; i++) {
+			const clone = document.importNode(content, true);
+			clone.querySelector('[data-js="archive"]')!.textContent = archivedData[i].title;
+
+			fragment.appendChild(clone);
+		}
 		document.querySelector('#archivesList')!.appendChild(fragment);
 	} else {
 		console.log('template要素に対応していません。');

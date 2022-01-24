@@ -7,7 +7,8 @@
 }
 
 .title {
-	font-size: 1.5rem;
+	font-size: 1.7rem;
+	font-weight: 600;
 	&::before {
 		display: inline-block;
 		width: 10px;
@@ -24,7 +25,7 @@
 	margin-top: 15px;
 	overflow: scroll;
 	&__item {
-		padding: 8px;
+		padding: 10px;
 		font-size: 1.3rem;
 		border-bottom: 1px solid #ddd;
 	}
